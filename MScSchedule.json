@@ -1,0 +1,876 @@
+[
+	{
+		"prof": {
+			"id": 1,
+			"name": "Aigerim Yessenbayeva"
+		}
+	},
+	{
+		"prof": {
+			"id": 2,
+			"name": "Sain Saginbekov"
+		}
+	},
+	{
+		"prof": {
+			"id": 3,
+			"name": "Latif Zohaib"
+		}
+	},
+	{
+		"prof": {
+			"id": 4,
+			"name": "Khalil Khan"
+		}
+	},
+	{
+		"prof": {
+			"id": 5,
+			"name": "Hashim Ali"
+		}
+	},
+	{
+		"prof": {
+			"id": 6,
+			"name": "Siamac Fazli"
+		}
+	},
+	{
+		"prof": {
+			"id": 7,
+			"name": "Michael Lewis"
+		}
+	},
+	{
+		"prof": {
+			"id": 8,
+			"name": "Yesdaulet Izenov"
+		}
+	},
+	{
+		"prof": {
+			"id": 9,
+			"name": "Pavel Braslavskii"
+		}
+	},
+	{
+		"prof": {
+			"id": 10,
+			"name": "Askar Boranbayev"
+		}
+	},{
+		"prof": {
+			"id": 11,
+			"name": "Jurn Gyu Park"
+		}
+	},
+	{
+		"prof": {
+			"id": 12,
+			"name": "Anara Sandygulova"
+		}
+	},
+	{
+		"prof": {
+			"id": 13,
+			"name": "John Israilidis Antoniou"
+		}
+	},
+    {
+		"prof": {
+			"id": 14,
+			"name": "Saltanat Akhmadi"
+		}
+	},
+    {
+		"prof": {
+			"id": 15,
+			"name": "Abid Nadeem"
+		}
+	},
+    {
+		"prof": {
+			"id": 16,
+			"name": "Essam Shehab"
+		}
+	},
+    {
+		"prof": {
+			"id": 17,
+			"name": "Maria Tsakalerou"
+		}
+	},
+    {
+		"prof": {
+			"id": 18,
+			"name": "Amin Zollanvari"
+		}
+	},
+    {
+		"prof": {
+			"id": 19,
+			"name": "Cevat Erisken"
+		}
+	},
+    {
+		"prof": {
+			"id": 20,
+			"name": "Daniele Tosi"
+		}
+	},
+    {
+		"prof": {
+			"id": 21,
+			"name": "Ainur Zhanbassynova"
+		}
+	},
+    {
+		"prof": {
+			"id": 22,
+			"name": "Chang-Keun Lim"
+		}
+	},
+    {
+		"prof": {
+			"id": 23,
+			"name": "Jong Kim"
+		}
+	},
+    {
+		"prof": {
+			"id": 24,
+			"name": "Dichuan Zhang"
+		}
+	},
+    {
+		"prof": {
+			"id": 25,
+			"name": "Sung Moon"
+		}
+	},
+    {
+		"prof": {
+			"id": 26,
+			"name": "Woojin Lee"
+		}
+	},
+    {
+		"prof": {
+			"id": 27,
+			"name": "Alfrendo Satyanaga"
+		}
+	},
+    {
+		"prof": {
+			"id": 28,
+			"name": "Ben Tyler"
+		}
+	},
+	{
+		"course": {
+			"id": 1,
+			"name": "csci501-software-principles-and-practice"
+		}
+	},
+	{
+		"course": {
+			"id": 2,
+			"name": "csci535-wireless-communication-and-networks"
+		}
+	},
+	{
+		"course": {
+			"id": 3,
+			"name": "csci537-software-defined-networking"
+		}
+	},
+	{
+		"course": {
+			"id": 4,
+			"name": "csci575-formal-methods-and-applications"
+		}
+	},
+	{
+		"course": {
+			"id": 5,
+			"name": "csci585-computer-vision"
+		}
+	},
+	{
+		"course": {
+			"id": 6,
+			"name": "csci592-intelligent-systems"
+		}
+	},
+	{
+		"course": {
+			"id": 7,
+			"name": "csci594-deep-learning"
+		}
+	},
+	{
+		"course": {
+			"id": 8,
+			"name": "csci693-thesis-proposal"
+		}
+	},
+    {
+		"course": {
+			"id": 9,
+			"name": "ds501-fundamentals-of-data-science"
+		}
+	},
+    {
+		"course": {
+			"id": 10,
+			"name": "ds502-probability-and-statistics-for-data-science"
+		}
+	},
+    {
+		"course": {
+			"id": 11,
+			"name": "ds507-databse-management-systems"
+		}
+	},
+    {
+		"course": {
+			"id": 12,
+			"name": "ds509-information-retrieval"
+		}
+	},
+    {
+		"course": {
+			"id": 13,
+			"name": "ds551-process-and-project-management"
+		}
+	},
+    {
+		"course": {
+			"id": 14,
+			"name": "ds552-data-driven-innovation"
+		}
+	},
+    {
+		"course": {
+			"id": 15,
+			"name": "ds693-thesis-proposal"
+		}
+	},
+    {
+		"course": {
+			"id": 16,
+			"name": "emem507-project-management"
+		}
+	},
+    {
+		"course": {
+			"id": 17,
+			"name": "emem523-supply-chain-management"
+		}
+	},
+    {
+		"course": {
+			"id": 18,
+			"name": "emem533-engineering-management-and-engineering-economy"
+		}
+	},
+    {
+		"course": {
+			"id": 19,
+			"name": "emem535-managing-product-and-service-development"
+		}
+	},
+    {
+		"course": {
+			"id": 20,
+			"name": "emem537-engineering-decision-tools"
+		}
+	},
+    {
+		"course": {
+			"id": 21,
+			"name": "emem538-knowledge-and-innovation-management"
+		}
+	},
+    {
+		"course": {
+			"id": 22,
+			"name": "emem539-big-data-and-information-management"
+		}
+	},
+    {
+		"course": {
+			"id": 23,
+			"name": "emem549-capstone-project-i"
+		}
+	},
+    {
+		"course": {
+			"id": 24,
+			"name": "mbme601-master-thesis-i"
+		}
+	},
+    {
+		"course": {
+			"id": 25,
+			"name": "mbme603-biomaterials-science-and-engineering"
+		}
+	},
+    {
+		"course": {
+			"id": 26,
+			"name": "mbme604-biosensors"
+		}
+	},
+    {
+		"course": {
+			"id": 27,
+			"name": "mbme610-anatomy-and-physiology-for-biomedical-engineers"
+		}
+	},
+    {
+		"course": {
+			"id": 28,
+			"name": "mbme710-biophotonics"
+		}
+	},
+    {
+		"course": {
+			"id": 29,
+			"name": "mcee601-master-thesis-i"
+		}
+	},
+    {
+		"course": {
+			"id": 30,
+			"name": "mcee603-finite-element-methods-with-lab"
+		}
+	},
+    {
+		"course": {
+			"id": 31,
+			"name": "mcee604-advanced-soil-mechanics-with-lab"
+		}
+	},
+    {
+		"course": {
+			"id": 32,
+			"name": "mcee605-environmental-chemistry"
+		}
+	},
+    {
+		"course": {
+			"id": 33,
+			"name": "mcee716-unsaturated-soil-mechanics-for-engineering-practice"
+		}
+	},
+    {
+		"course": {
+			"id": 34,
+			"name": "mchme601-master-thesis-i"
+		}
+	},
+    {
+		"course": {
+			"id": 35,
+			"name": "mchme603-advanced-materials-processing-with-lab"
+		}
+	},
+    {
+		"course": {
+			"id": 36,
+			"name": "mchme604-advanced-materials-chacterization-methods-with-lab"
+		}
+	},
+    {
+		"course": {
+			"id": 37,
+			"name": "mchme605-advanced-chemical-reaction-engineering"
+		}
+	},
+    {
+		"course": {
+			"id": 38,
+			"name": "mchme714-computational-materials-engineering-lab"
+		}
+	},
+    {
+		"course": {
+			"id": 39,
+			"name": "mece601-master-thesis-i"
+		}
+	},
+    {
+		"course": {
+			"id": 40,
+			"name": "mece603-advanced-data-structures-and-algorithms"
+		}
+	},
+    {
+		"course": {
+			"id": 41,
+			"name": "mece605-statistics-and-probability-for-computer-engineers"
+		}
+	},
+    {
+		"course": {
+			"id": 42,
+			"name": "mece606-embedded-systems-and-applications"
+		}
+	},
+    {
+		"course": {
+			"id": 43,
+			"name": "mece724-system-modelling-and-control"
+		}
+	},
+    {
+		"course": {
+			"id": 44,
+			"name": "mece726-modern-semiconductor-devices-and-systems"
+		}
+	},
+    {
+		"course": {
+			"id": 45,
+			"name": "mece727-biosensors"
+		}
+	},
+    {
+		"course": {
+			"id": 46,
+			"name": "mece731-rf-and-microwave-circuits"
+		}
+	},
+    {
+		"course": {
+			"id": 47,
+			"name": "mmae600-research-seminar"
+		}
+	},
+    {
+		"course": {
+			"id": 48,
+			"name": "mmae601-master-thesis-i"
+		}
+	},
+    {
+		"course": {
+			"id": 49,
+			"name": "mmae603-modern-control-engineering"
+		}
+	},
+    {
+		"course": {
+			"id": 50,
+			"name": "mmae605-advanced-manufacturing-processes-and-strategies"
+		}
+	},
+    {
+		"course": {
+			"id": 51,
+			"name": "mmae702-sustainable-vehicle-transportation-systems"
+		}
+	},
+    {
+		"course": {
+			"id": 52,
+			"name": "mmae713-computational-fluid-structure-interaction"
+		}
+	},
+    {
+		"course": {
+			"id": 53,
+			"name": "mmae717-advanced-materials-and-composites"
+		}
+	},
+    {
+		"course": {
+			"id": 54,
+			"name": "msc600-research-methods-and-ethics"
+		}
+	},
+    {
+		"course": {
+			"id": 55,
+			"name": "msc601-technical-communication"
+		}
+	},
+    {
+		"course": {
+			"id": 56,
+			"name": "msc602-advanced-applied-mathematics"
+		}
+	},
+    {
+		"course": {
+			"id": 57,
+			"name": "msc615-advanced-statistics-and-probability"
+		}
+	},
+    {
+		"course": {
+			"id": 58,
+			"name": "robt501-robot-manipulation-and-mobility"
+		}
+	},
+    {
+		"course": {
+			"id": 59,
+			"name": "robt503-dynamic-systems-and-controls"
+		}
+	},
+    {
+		"course": {
+			"id": 60,
+			"name": "robt611-industrial-robotcs"
+		}
+	},
+    {
+		"course": {
+			"id": 61,
+			"name": "robt613-brain-machine-interfaces"
+		}
+	},
+    {
+		"course": {
+			"id": 62,
+			"name": "robt615-optimal-control-and-planning"
+		}
+	},
+    {
+		"course": {
+			"id": 63,
+			"name": "robt691-thesis-proposal"
+		}
+	},
+    {
+		"course": {
+			"id": 64,
+			"name": "seds591-research-methods"
+		}
+	},
+    {
+		"room": {
+			"name": "5.103",
+			"lab": false,
+			"size": 60
+		}
+	},
+    {
+		"room": {
+			"name": "7.246",
+			"lab": false,
+			"size": 60
+		}
+	},
+    {
+		"room": {
+			"name": "7.322",
+			"lab": false,
+			"size": 60
+		}
+	},
+    {
+		"room": {
+			"name": "7.422",
+			"lab": false,
+			"size": 60
+		}
+	},
+    {
+		"room": {
+			"name": "7.507",
+			"lab": false,
+			"size": 60
+		}
+	},
+    {
+		"room": {
+			"name": "7.522",
+			"lab": false,
+			"size": 60
+		}
+	},
+    {
+		"room": {
+			"name": "7E.125/3",
+			"lab": false,
+			"size": 60
+		}
+	},
+    {
+		"room": {
+			"name": "7E.217",
+			"lab": false,
+			"size": 60
+		}
+	},
+    {
+		"room": {
+			"name": "7E.220",
+			"lab": false,
+			"size": 60
+		}
+	},
+    {
+		"room": {
+			"name": "7E.221",
+			"lab": false,
+			"size": 60
+		}
+	},
+    {
+		"room": {
+			"name": "7E.229",
+			"lab": false,
+			"size": 60
+		}
+	},
+    {
+		"room": {
+			"name": "7E.231",
+			"lab": false,
+			"size": 60
+		}
+	},
+    {
+		"room": {
+			"name": "7E.429",
+			"lab": false,
+			"size": 60
+		}
+	},
+	{
+		"group": {
+			"id": 1,
+			"name": "csci501_1",
+			"size": 40
+		}
+	},
+	{
+		"group": {
+			"id": 2,
+			"name": "csci535_1",
+			"size": 40
+		}
+	},
+	{
+		"group": {
+			"id": 3,
+			"name": "csci537_1",
+			"size": 19
+		}
+	},
+	{
+		"group": {
+			"id": 4,
+			"name": "csci575_1",
+			"size": 19
+		}
+	},
+	{
+		"group": {
+			"id": 5,
+			"name": "csci585_1",
+			"size": 19
+		}
+	},
+	{
+		"group": {
+			"id": 6,
+			"name": "csci592_1",
+			"size": 19
+		}
+	},
+	{
+		"group": {
+			"id": 7,
+			"name": "csci594_1",
+			"size": 19
+		}
+	},
+	{
+		"group": {
+			"id": 8,
+			"name": "csci594_2",
+			"size": 19
+		}
+	},
+	{
+		"group": {
+			"id": 9,
+			"name": "csci693_1",
+			"size": 19
+		}
+	},
+	{
+		"group": {
+			"id": 10,
+			"name": "ds501_1",
+			"size": 19
+		}
+	},
+	{
+		"group": {
+			"id": 11,
+			"name": "ds502_1",
+			"size": 19
+		}
+	},
+	{
+		"group": {
+			"id": 12,
+			"name": "ds507_1",
+			"size": 19
+		}
+	},
+	{
+		"group": {
+			"id": 13,
+			"name": "ds509_1",
+			"size": 19
+		}
+	},
+	{
+		"group": {
+			"id": 14,
+			"name": "ds551_1",
+			"size": 19
+		}
+	},
+	{
+		"group": {
+			"id": 15,
+			"name": "ds552_1",
+			"size": 19
+		}
+	},
+	{
+		"group": {
+			"id": 16,
+			"name": "ds693_1",
+			"size": 19
+		}
+	},
+	{
+		"class": {
+			"professor": 1,
+			"course": 1,
+			"duration": 2,
+			"group": 1
+		}
+	},
+	{
+		"class": {
+			"professor": 2,
+			"course": 2,
+			"duration": 1,
+			"group": 2
+		}
+	},
+	{
+		"class": {
+			"professor": 3,
+			"course": 3,
+			"duration": 1,
+			"group": 3
+		}
+	},
+	{
+		"class": {
+			"professor": 28,
+			"course": 4,
+			"duration": 1,
+			"group": 4
+		}
+	},
+	{
+		"class": {
+			"professor": 4,
+			"course": 5,
+			"duration": 1,
+			"group": 5
+		}
+	},
+	{
+		"class": {
+			"professor": 5,
+			"course": 6,
+			"duration": 1,
+			"group": 6
+		}
+	},
+	{
+		"class": {
+			"professor": 6,
+			"course": 7,
+			"duration": 1,
+			"groups": [ 7, 8 ]
+		}
+	},
+	{
+		"class": {
+			"professor": 3,
+			"course": 8,
+			"duration": 2,
+			"group": 9
+		}
+	},
+	{
+		"class": {
+			"professor": 7,
+			"course": 9,
+			"duration": 2,
+			"group": 10
+		}
+	},
+	{
+		"class": {
+			"professor": 6,
+			"course": 10,
+			"duration": 2,
+			"group": 11
+		}
+	},
+	{
+		"class": {
+			"professor": 8,
+			"course": 11,
+			"duration": 2,
+			"group": 12
+		}
+	},
+	{
+		"class": {
+			"professor": 9,
+			"course": 12,
+			"duration": 2,
+			"group": 13
+		}
+	},
+	{
+		"class": {
+			"professor": 10,
+			"course": 13,
+			"duration": 2,
+			"group": 14
+		}
+	},
+	{
+		"class": {
+			"professor": 11,
+			"course": 14,
+			"duration": 2,
+			"group": 15
+		}
+	},
+	{
+		"class": {
+			"professor": 3,
+			"course": 15,
+			"duration": 2,
+			"group": 16
+		}
+	}
+]

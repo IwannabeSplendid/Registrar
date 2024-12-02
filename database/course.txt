@@ -1,0 +1,66 @@
+id  name
+
+1 csci501-software-principles-and-practice
+2 csci535-wireless-communication-and-networks
+3 csci537-software-defined-networking
+4 csci575-formal-methods-and-applications 
+5 csci585-computer-vision
+6 csci592-intelligent-systems
+7 csci594-deep-learning
+8 csci693-thesis-proposal
+9 ds501-fundamentals-of-data-science
+10 ds502-probability-and-statistics-for-data-science
+11 ds507-databse-management-systems
+12 ds509-information-retrieval
+13 ds551-process-and-project-management
+14 ds552-data-driven-innovation
+15 ds693-thesis-proposal
+16 emem507-project-management
+17 emem523-supply-chain-management
+emem533-engineering-management-and-engineering-economy
+emem535-managing-product-and-service-development
+emem537-engineering-decision-tools
+emem538-knowledge-and-innovation-management
+emem539-big-data-and-information-management
+emem549-capstone-project-i
+mbme601-master-thesis-i
+mbme603-biomaterials-science-and-engineering
+mbme604-biosensors
+mbme610-anatomy-and-physiology-for-biomedical-engineers
+mbme710-biophotonics
+mcee601-master-thesis-i
+mcee603-finite-element-methods-with-lab
+mcee604-advanced-soil-mechanics-with-lab
+mcee605-environmental-chemistry
+mcee716-unsaturated-soil-mechanics-for-engineering-practice
+mchme601-master-thesis-i
+mchme603-advanced-materials-processing-with-lab
+mchme604-advanced-materials-chacterization-methods-with-lab
+mchme605-advanced-chemical-reaction-engineering
+mchme714-computational-materials-engineering-lab
+mece601-master-thesis-i
+mece603-advanced-data-structures-and-algorithms
+mece605-statistics-and-probability-for-computer-engineers
+mece606-embedded-systems-and-applications
+mece724-system-modelling-and-control
+mece726-modern-semiconductor-devices-and-systems
+mece727-biosensors
+mece731-rf-and-microwave-circuits
+mmae600-research-seminar
+mmae601-master-thesis-i
+mmae603-modern-control-engineering
+mmae605-advanced-manufacturing-processes-and-strategies
+mmae702-sustainable-vehicle-transportation-systems
+mmae713-computational-fluid-structure-interaction
+mmae717-advanced-materials-and-composites
+msc600-research-methods-and-ethics
+msc601-technical-communication
+msc602-advanced-applied-mathematics
+msc615-advanced-statistics-and-probability
+robt501-robot-manipulation-and-mobility
+robt503-dynamic-systems-and-controls
+robt611-industrial-robotcs
+robt613-brain-machine-interfaces
+robt615-optimal-control-and-planning
+robt691-thesis-proposal
+seds591-research-methods

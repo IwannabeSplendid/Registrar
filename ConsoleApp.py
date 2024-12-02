@@ -34,7 +34,7 @@ def main(file_name):
 
 
 if __name__ == "__main__":
-    file_name = "/GaSchedule.json"
+    file_name = "/MScSchedule.json"
     if len(sys.argv) > 1:
         file_name = sys.argv[1]
 
