@@ -1,0 +1,247 @@
+
+{
+    configuration = Configuration()
+    self = Schedule(configuration)
+}
+    calculateFitness(self)
+{
+    (
+        self._fitness = 1 and for all cc, reservation_index in self._classes.items(), r= Criteria.isSeatEnough(r, cc)
+        and Criteria.isComputerEnough(r, cc)
+        and not Criteria.isRoomOverlapped(slots, reservation, dur)
+        and not Criteria.isOverlappedProfStudentGrp(slots, cc, numberOfRooms, timeId)[0]
+        and not Criteria.isOverlappedProfStudentGrp(slots, cc, numberOfRooms, timeId)[1]
+    )
+    or 
+    (
+        self._fitness < 1
+    )
+}
+
+[SEQUENTIAL RULE]
+
+{
+    configuration = Configuration()
+    and
+    self = Schedule(configuration)
+    and
+    self._objectives = np.zeros(len(Criteria.weights))
+    and
+    score = 0
+    and
+    criteria, configuration = self._criteria, self._configuration
+    and
+    items, slots = self._classes.items(), self._slots
+    and
+    numberOfRooms = configuration.numberOfRooms
+    and
+    DAY_HOURS, DAYS_NUM = Constant.DAY_HOURS, Constant.DAYS_NUM
+    and
+    daySize = DAY_HOURS * numberOfRooms
+    and
+    ci = 0
+    and
+    getRoomById = configuration.getRoomById
+    and
+    m = 0
+}
+    WHILE
+        m < len(items)
+    DO
+        cc := items[m][0]
+        reservation_index := items[m][1]
+        reservation := Reservation.parse(reservation_index)
+        day, time, room := reservation.Day, reservation.Time, reservation.Room
+        dur := cc.Duration
+        ro := Criteria.isRoomOverlapped(slots, reservation, dur)
+        criteria[ci + 0] := !ro
+        r := getRoomById(room)
+        criteria[ci + 1] := Criteria.isSeatEnough(r, cc)
+        criteria[ci + 2] := Criteria.isComputerEnough(r, cc)
+        timeId := day * daySize + time
+        po := Criteria.isOverlappedProfStudentGrp(slots, cc, numberOfRooms, timeId)[0]
+        go := Criteria.isOverlappedProfStudentGrp(slots, cc, numberOfRooms, timeId)[1]
+        criteria[ci + 3] := ! po
+        criteria[ci + 4] := ! go
+
+        i := 0
+        WHILE
+            i < len(self._objectives)
+        DO 
+            IF 
+                criteria[ci + i] = true 
+            THEN 
+                score := score + 1 
+                i := i + 1
+            ELSE 
+                score := score + Criteria.weights[i];
+                IF 
+                    Criteria.weights[i] > 0 
+                THEN 
+                    self._objectives[i] := self._objectives[i] + 1
+                    i := i + 1
+                ELSE
+                    self._objectives[i] := self._objectives[i] + 2
+                    i := i + 1
+                END IF
+            END IF
+        END WHILE
+
+        ci := ci + len(Criteria.weights)
+        m := m + 1
+
+    END WHILE
+
+    self._fitness := score / len(criteria)
+
+{
+    (
+        self._fitness = 1 and for all cc, reservation_index in self._classes.items(), r= Criteria.isSeatEnough(r, cc)
+        and Criteria.isComputerEnough(r, cc)
+        and not Criteria.isRoomOverlapped(slots, reservation, dur)
+        and not Criteria.isOverlappedProfStudentGrp(slots, cc, numberOfRooms, timeId)[0]
+        and not Criteria.isOverlappedProfStudentGrp(slots, cc, numberOfRooms, timeId)[1]
+    )
+    or 
+    (
+        self._fitness < 1
+    )
+}
+
+[SEQUENTIAL RULE]
+
+{
+    configuration = Configuration()
+    and
+    self = Schedule(configuration)
+    and
+    self._objectives = np.zeros(len(Criteria.weights))
+    and
+    score = 0
+    and
+    criteria, configuration = self._criteria, self._configuration
+    and
+    items, slots = self._classes.items(), self._slots
+    and
+    numberOfRooms = configuration.numberOfRooms
+    and
+    DAY_HOURS, DAYS_NUM = Constant.DAY_HOURS, Constant.DAYS_NUM
+    and
+    daySize = DAY_HOURS * numberOfRooms
+    and
+    ci = 0
+    and
+    getRoomById = configuration.getRoomById
+    and
+    m = 0
+}
+WHILE 
+    m < len(items)
+DO
+    cc := items[m][0]
+    reservation_index := items[m][1]
+    reservation := Reservation.parse(reservation_index)
+    day, time, room := reservation.Day, reservation.Time, reservation.Room
+    dur := cc.Duration
+    ro := Criteria.isRoomOverlapped(slots, reservation, dur)
+    criteria[ci + 0] := !ro
+    r := getRoomById(room)
+    criteria[ci + 1] := Criteria.isSeatEnough(r, cc)
+    criteria[ci + 2] := Criteria.isComputerEnough(r, cc)
+    timeId := day * daySize + time
+    po := Criteria.isOverlappedProfStudentGrp(slots, cc, numberOfRooms, timeId)[0]
+    go := Criteria.isOverlappedProfStudentGrp(slots, cc, numberOfRooms, timeId)[1]
+    criteria[ci + 3] := ! po
+    criteria[ci + 4] := ! go
+
+    i := 0
+    WHILE
+        i < len(self._objectives)
+    DO 
+        IF 
+            criteria[ci + i] = true 
+        THEN 
+            score := score + 1
+            i := i + 1
+        ELSE 
+            score := score + Criteria.weights[i]; 
+            IF 
+                Criteria.weights[i] > 0 
+            THEN 
+                self._objectives[i] := self._objectives[i] + 1
+                i := i + 1
+            ELSE
+                self._objectives[i] := self._objectives[i] + 2
+                i := i + 1
+            END IF
+        END IF
+    END WHILE
+
+    ci := ci + len(Criteria.weights)
+    m = m + 1
+END WHILE
+{
+    P
+}
+
+{
+    P
+}
+self._fitness := score / len(criteria)
+
+{
+    (
+        self._fitness = 1 and for all cc, reservation_index in self._classes.items(), r= Criteria.isSeatEnough(r, cc)
+        and Criteria.isComputerEnough(r, cc)
+        and not Criteria.isRoomOverlapped(slots, reservation, dur)
+        and not Criteria.isOverlappedProfStudentGrp(slots, cc, numberOfRooms, timeId)[0]
+        and not Criteria.isOverlappedProfStudentGrp(slots, cc, numberOfRooms, timeId)[1]
+    )
+    or 
+    (
+        self._fitness < 1
+    )
+}
+
+[ASSIGNMENT RULE]
+
+{
+    (score = len(criteria) and for all cc, reservation_index in self._classes.items(), r= Criteria.isSeatEnough(r, cc)
+    and Criteria.isComputerEnough(r, cc)
+    and not Criteria.isRoomOverlapped(slots, reservation, dur)
+    and not Criteria.isOverlappedProfStudentGrp(slots, cc, numberOfRooms, timeId)[0]
+    and not Criteria.isOverlappedProfStudentGrp(slots, cc, numberOfRooms, timeId)[1])
+    or 
+    (
+        score < len(criteria)
+    )
+
+}
+self._fitness := score / len(criteria)
+
+{
+    (self._fitness = 1 and for all cc, reservation_index in self._classes.items(), r= Criteria.isSeatEnough(r, cc)
+    and Criteria.isComputerEnough(r, cc)
+    and not Criteria.isRoomOverlapped(slots, reservation, dur)
+    and not Criteria.isOverlappedProfStudentGrp(slots, cc, numberOfRooms, timeId)[0]
+    and not Criteria.isOverlappedProfStudentGrp(slots, cc, numberOfRooms, timeId)[1])
+    or 
+    (
+        self._fitness < 1
+    )
+}
+
+P = 
+(
+    (
+        score = len(criteria) and for all cc, reservation_index in self._classes.items(), r= Criteria.isSeatEnough(r, cc)
+        and Criteria.isComputerEnough(r, cc)
+        and not Criteria.isRoomOverlapped(slots, reservation, dur)
+        and not Criteria.isOverlappedProfStudentGrp(slots, cc, numberOfRooms, timeId)[0]
+        and not Criteria.isOverlappedProfStudentGrp(slots, cc, numberOfRooms, timeId)[1]
+    )
+        or 
+    (
+        score < len(criteria)
+    )
+)

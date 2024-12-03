@@ -168,7 +168,7 @@ class GeneticAlgorithm:
             print("Fitness:", "{:f}\t".format(best.fitness), "Generation:", currentGeneration, end="\r")
 
             # algorithm has reached criteria?
-            if best.fitness > minFitness:
+            if best.fitness == 1:
                 break
 
             difference = abs(best.fitness - lastBestFit)

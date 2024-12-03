@@ -1,0 +1,50 @@
+def isRoomOverlapped(slots, reservation, dur):
+    reservation_index = hash(reservation)
+    cls = slots[reservation_index: reservation_index + dur]
+    return any(True for slot in cls if len(slot) > 1)
+
+--------------------------------------------------------------
+{ 
+    slots_length = numberOfDays * numberOfHoursPerDay * numberOfRooms [Schedule.py line 19]
+    and
+    slots = [[] for _ in range(slots_length)] [Schedule.py line 20]
+    and
+    slots = array of reservation, slots[x] - list of all reservations such that x in [hash(reservation), hash(reservation)+dur]
+    and
+    reservation = a tuple of (day,time,room) [Reservation.py line 9-12]
+    and
+    hash(reservation) = day * numberOfRooms * numberOfHoursPerDay + room * numberOfHoursPerDay + time [Reservation.py line 45]
+    and
+    dur = durationOfCourseClass [Schedule.py, line 319]
+    and
+    roomOverlapped = exists r1 and r2 such that r1.day=r2.day and r1.room= r2.room and r1.hour in [r2.hour, r2.hour + r2.dur]
+}
+reservation_index := hash(reservation)
+cls := slots[reservation_index: reservation_index + dur]
+return := any(True for slot in cls if len(slot) > 1)
+{ 
+    (return = True and roomOverlapped)
+    or
+    (return = False and not roomOverlapped)
+}
+
+--------------------------------------------------------------
+
+{ 
+    slots_length = numberOfDays * numberOfHoursPerDay * numberOfRooms [Schedule.py line 19]
+    and
+    slots = [[] for _ in range(slots_length)] [Schedule.py line 20]
+    and
+    reservation = (day,time,room) [Reservation.py line 9-12]
+    and
+    hash(reservation) = day * numberOfRooms * numberOfHoursPerDay + room * numberOfHoursPerDay + time [Reservation.py line 45]
+    and
+    dur = durationOfCourseClass [Schedule.py, line 319]
+    and
+    roomOverlapped = exists r1 and r2 such that r1.day=r2.day and r1.room= r2.room and r1.hour in [r2.hour, r2.hour + r2.dur]
+}
+reservation_index := hash(reservation)
+cls := slots[reservation_index: reservation_index + dur]
+{
+    reservation_index = day * numberOfRooms * numberOfHoursPerDay + room * numberOfHoursPerDay + time 
+}
