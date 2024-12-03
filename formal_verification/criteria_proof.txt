@@ -65,4 +65,4 @@ Slots is a list of lists where list[x].append(reservation) if x = hashed(reserva
 cc is a specific CourseClass.
 timeId is reservation.day * Constant.DAY_HOURS * numberOfRooms + reservation.time, which is used to access a slot number where this cc could potentially be and iterates over all rooms
 so basicaly it checks over all reservation during the same day, time and checks wether it overlaps with student group or professor.
-It checks over all to ensure that if it overlaps po or/and go will be False.
+It checks over all to ensure that if it overlaps po or/and go will be True.
