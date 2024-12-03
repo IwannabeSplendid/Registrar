@@ -245,3 +245,784 @@ P =
         score < len(criteria)
     )
 )
+
+-------------------------------------------------------
+Applying P:
+
+{
+    configuration = Configuration()
+    and
+    self = Schedule(configuration)
+    and
+    self._objectives = np.zeros(len(Criteria.weights))
+    and
+    score = 0
+    and
+    criteria, configuration = self._criteria, self._configuration
+    and
+    items, slots = self._classes.items(), self._slots
+    and
+    numberOfRooms = configuration.numberOfRooms
+    and
+    DAY_HOURS, DAYS_NUM = Constant.DAY_HOURS, Constant.DAYS_NUM
+    and
+    daySize = DAY_HOURS * numberOfRooms
+    and
+    ci = 0
+    and
+    getRoomById = configuration.getRoomById
+    and
+    m = 0
+}
+WHILE 
+    m < len(items)
+DO
+    cc := items[m][0]
+    reservation_index := items[m][1]
+    reservation := Reservation.parse(reservation_index)
+    day, time, room := reservation.Day, reservation.Time, reservation.Room
+    dur := cc.Duration
+    ro := Criteria.isRoomOverlapped(slots, reservation, dur)
+    criteria[ci + 0] := !ro
+    r := getRoomById(room)
+    criteria[ci + 1] := Criteria.isSeatEnough(r, cc)
+    criteria[ci + 2] := Criteria.isComputerEnough(r, cc)
+    timeId := day * daySize + time
+    po := Criteria.isOverlappedProfStudentGrp(slots, cc, numberOfRooms, timeId)[0]
+    go := Criteria.isOverlappedProfStudentGrp(slots, cc, numberOfRooms, timeId)[1]
+    criteria[ci + 3] := ! po
+    criteria[ci + 4] := ! go
+
+    i := 0
+    WHILE
+        i < len(self._objectives)
+    DO 
+        IF 
+            criteria[ci + i] = true 
+        THEN 
+            score := score + 1
+            i := i + 1
+        ELSE 
+            score := score + Criteria.weights[i]; 
+            IF 
+                Criteria.weights[i] > 0 
+            THEN 
+                self._objectives[i] := self._objectives[i] + 1
+                i := i + 1
+            ELSE
+                self._objectives[i] := self._objectives[i] + 2
+                i := i + 1
+            END IF
+        END IF
+    END WHILE
+
+    ci := ci + len(Criteria.weights)
+    m = m + 1
+END WHILE
+{
+    (
+        score = len(criteria) and for all cc, reservation_index in self._classes.items(), r= Criteria.isSeatEnough(r, cc)
+        and Criteria.isComputerEnough(r, cc)
+        and not Criteria.isRoomOverlapped(slots, reservation, dur)
+        and not Criteria.isOverlappedProfStudentGrp(slots, cc, numberOfRooms, timeId)[0]
+        and not Criteria.isOverlappedProfStudentGrp(slots, cc, numberOfRooms, timeId)[1]
+    )
+        or 
+    (
+        score < len(criteria)
+    )
+}
+
+[ITERATION RULE]
+
+A -> 
+(
+    configuration = Configuration()
+    and
+    self = Schedule(configuration)
+    and
+    self._objectives = np.zeros(len(Criteria.weights))
+    and
+    score = 0
+    and
+    criteria, configuration = self._criteria, self._configuration
+    and
+    items, slots = self._classes.items(), self._slots
+    and
+    numberOfRooms = configuration.numberOfRooms
+    and
+    DAY_HOURS, DAYS_NUM = Constant.DAY_HOURS, Constant.DAYS_NUM
+    and
+    daySize = DAY_HOURS * numberOfRooms
+    and
+    ci = 0
+    and
+    getRoomById = configuration.getRoomById
+    and
+    m = 0
+)
+--
+
+(
+    score = len(criteria) and for all cc, reservation_index in self._classes.items(), r= Criteria.isSeatEnough(r, cc)
+    and Criteria.isComputerEnough(r, cc)
+    and not Criteria.isRoomOverlapped(slots, reservation, dur)
+    and not Criteria.isOverlappedProfStudentGrp(slots, cc, numberOfRooms, timeId)[0]
+    and not Criteria.isOverlappedProfStudentGrp(slots, cc, numberOfRooms, timeId)[1]
+)
+    or 
+(
+    score < len(criteria)
+) ->
+A and m >= len(items)
+--
+
+{
+    A and m < len(items)
+}
+    cc := items[m][0]
+    reservation_index := items[m][1]
+    reservation := Reservation.parse(reservation_index)
+    day, time, room := reservation.Day, reservation.Time, reservation.Room
+    dur := cc.Duration
+    ro := Criteria.isRoomOverlapped(slots, reservation, dur)
+    criteria[ci + 0] := !ro
+    r := getRoomById(room)
+    criteria[ci + 1] := Criteria.isSeatEnough(r, cc)
+    criteria[ci + 2] := Criteria.isComputerEnough(r, cc)
+    timeId := day * daySize + time
+    po := Criteria.isOverlappedProfStudentGrp(slots, cc, numberOfRooms, timeId)[0]
+    go := Criteria.isOverlappedProfStudentGrp(slots, cc, numberOfRooms, timeId)[1]
+    criteria[ci + 3] := ! po
+    criteria[ci + 4] := ! go
+
+    i := 0
+    WHILE
+        i < len(self._objectives)
+    DO 
+        IF 
+            criteria[ci + i] = true 
+        THEN 
+            score := score + 1
+            i := i + 1
+        ELSE 
+            score := score + Criteria.weights[i]; 
+            IF 
+                Criteria.weights[i] > 0 
+            THEN 
+                self._objectives[i] := self._objectives[i] + 1
+                i := i + 1
+            ELSE
+                self._objectives[i] := self._objectives[i] + 2
+                i := i + 1
+            END IF
+        END IF
+    END WHILE
+
+    ci := ci + len(Criteria.weights)
+    m = m + 1
+{
+    A and m >= len(items)
+}
+
+[SEQUENCE RULE]
+
+{
+    A and m < len(items)
+}
+    cc := items[m][0]
+    reservation_index := items[m][1]
+    reservation := Reservation.parse(reservation_index)
+    day, time, room := reservation.Day, reservation.Time, reservation.Room
+    dur := cc.Duration
+    ro := Criteria.isRoomOverlapped(slots, reservation, dur)
+    criteria[ci + 0] := !ro
+    r := getRoomById(room)
+    criteria[ci + 1] := Criteria.isSeatEnough(r, cc)
+    criteria[ci + 2] := Criteria.isComputerEnough(r, cc)
+    timeId := day * daySize + time
+    po := Criteria.isOverlappedProfStudentGrp(slots, cc, numberOfRooms, timeId)[0]
+    go := Criteria.isOverlappedProfStudentGrp(slots, cc, numberOfRooms, timeId)[1]
+    criteria[ci + 3] := ! po
+    criteria[ci + 4] := ! go
+    i := 0
+{
+    B
+}
+--
+{
+    B
+}
+    WHILE
+        i < len(self._objectives)
+    DO 
+        IF 
+            criteria[ci + i] = true 
+        THEN 
+            score := score + 1
+            i := i + 1
+        ELSE 
+            score := score + Criteria.weights[i]; 
+            IF 
+                Criteria.weights[i] > 0 
+            THEN 
+                self._objectives[i] := self._objectives[i] + 1
+                i := i + 1
+            ELSE
+                self._objectives[i] := self._objectives[i] + 2
+                i := i + 1
+            END IF
+        END IF
+    END WHILE
+{
+    C
+}
+----
+
+{
+    C
+}
+    ci := ci + len(Criteria.weights)
+    m = m + 1
+{
+    A and m >= len(items)
+}
+
+B = 
+(
+    A and m < len(items)
+    and
+    cc = items[m][0]
+    and
+    reservation_index = items[m][1]
+    and
+    reservation = Reservation.parse(reservation_index)
+    and
+    day, time, room = reservation.Day, reservation.Time, reservation.Room
+    and
+    dur = cc.Duration
+    and
+    ro = Criteria.isRoomOverlapped(slots, reservation, dur)
+    and
+    criteria[ci + 0] = !ro
+    and
+    r = getRoomById(room)
+    and
+    criteria[ci + 1] = Criteria.isSeatEnough(r, cc)
+    and
+    criteria[ci + 2] = Criteria.isComputerEnough(r, cc)
+    and
+    timeId = day * daySize + time
+    and
+    po = Criteria.isOverlappedProfStudentGrp(slots, cc, numberOfRooms, timeId)[0]
+    and
+    go = Criteria.isOverlappedProfStudentGrp(slots, cc, numberOfRooms, timeId)[1]
+    and
+    criteria[ci + 3] = ! po
+    and
+    criteria[ci + 4] = ! go
+    and
+    i = 0
+)
+
+-----------------------
+Applying B:
+
+{
+    A and m < len(items)
+    and
+    cc = items[m][0]
+    and
+    reservation_index = items[m][1]
+    and
+    reservation = Reservation.parse(reservation_index)
+    and
+    day, time, room = reservation.Day, reservation.Time, reservation.Room
+    and
+    dur = cc.Duration
+    and
+    ro = Criteria.isRoomOverlapped(slots, reservation, dur)
+    and
+    criteria[ci + 0] = !ro
+    and
+    r = getRoomById(room)
+    and
+    criteria[ci + 1] = Criteria.isSeatEnough(r, cc)
+    and
+    criteria[ci + 2] = Criteria.isComputerEnough(r, cc)
+    and
+    timeId = day * daySize + time
+    and
+    po = Criteria.isOverlappedProfStudentGrp(slots, cc, numberOfRooms, timeId)[0]
+    and
+    go = Criteria.isOverlappedProfStudentGrp(slots, cc, numberOfRooms, timeId)[1]
+    and
+    criteria[ci + 3] = ! po
+    and
+    criteria[ci + 4] = ! go
+    and
+    i = 0
+}
+    WHILE
+        i < len(self._objectives)
+    DO 
+        IF 
+            criteria[ci + i] = true 
+        THEN 
+            score := score + 1
+            i := i + 1
+        ELSE 
+            score := score + Criteria.weights[i]; 
+            IF 
+                Criteria.weights[i] > 0 
+            THEN 
+                self._objectives[i] := self._objectives[i] + 1
+                i := i + 1
+            ELSE
+                self._objectives[i] := self._objectives[i] + 2
+                i := i + 1
+            END IF
+        END IF
+    END WHILE
+{
+    C
+}
+
+[ITERATION RULE]
+
+(
+    A and m < len(items)
+    and
+    cc = items[m][0]
+    and
+    reservation_index = items[m][1]
+    and
+    reservation = Reservation.parse(reservation_index)
+    and
+    day, time, room = reservation.Day, reservation.Time, reservation.Room
+    and
+    dur = cc.Duration
+    and
+    ro = Criteria.isRoomOverlapped(slots, reservation, dur)
+    and
+    criteria[ci + 0] = !ro
+    and
+    r = getRoomById(room)
+    and
+    criteria[ci + 1] = Criteria.isSeatEnough(r, cc)
+    and
+    criteria[ci + 2] = Criteria.isComputerEnough(r, cc)
+    and
+    timeId = day * daySize + time
+    and
+    po = Criteria.isOverlappedProfStudentGrp(slots, cc, numberOfRooms, timeId)[0]
+    and
+    go = Criteria.isOverlappedProfStudentGrp(slots, cc, numberOfRooms, timeId)[1]
+    and
+    criteria[ci + 3] = ! po
+    and
+    criteria[ci + 4] = ! go
+    and
+    i = 0
+) -> D
+--
+
+D and i >= len(self._objectives)
+-> C
+--
+
+{
+    D and i < len(self._objectives)
+}
+    IF 
+        criteria[ci + i] = true 
+    THEN 
+        score := score + 1
+        i := i + 1
+    ELSE 
+        score := score + Criteria.weights[i]; 
+        IF 
+            Criteria.weights[i] > 0 
+        THEN 
+            self._objectives[i] := self._objectives[i] + 1
+            i := i + 1
+        ELSE
+            self._objectives[i] := self._objectives[i] + 2
+            i := i + 1
+        END IF
+    END IF
+{
+    D
+}
+
+----------------------------------------------
+
+[CONDITIONAL RULE]
+
+{
+    D and i < len(self._objectives) and criteria[ci + i] = true 
+}
+    score := score + 1
+    i := i + 1
+{
+    D
+}
+--
+{
+    D and i < len(self._objectives) and criteria[ci + i] = false 
+} 
+    IF 
+        Criteria.weights[i] > 0 
+    THEN
+        score := score + Criteria.weights[i]; 
+        self._objectives[i] := self._objectives[i] + 1
+        i := i + 1
+    ELSE
+        score := score + Criteria.weights[i];
+        self._objectives[i] := self._objectives[i] + 2
+        i := i + 1
+    END IF
+{
+    D
+}
+
+-----------------------------------------------
+[CONDITIONAL RULE]
+
+{
+    D and i < len(self._objectives) and criteria[ci + i] = false and Criteria.weights[i] > 0 
+}
+    score := score + Criteria.weights[i];
+    self._objectives[i] := self._objectives[i] + 1
+    i := i + 1
+{
+    D
+}
+--
+
+{
+    D and i < len(self._objectives) and criteria[ci + i] = false and Criteria.weights[i] <= 0 
+}
+    score := score + Criteria.weights[i];
+    self._objectives[i] := self._objectives[i] + 2
+    i := i + 1
+{
+    D
+}
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Now, we need to find D using this Hoare Triples, which should be valid:
+
+{
+    D and i < len(self._objectives) and criteria[ci + i] = false and Criteria.weights[i] > 0 
+}
+    score := score + Criteria.weights[i];
+    self._objectives[i] := self._objectives[i] + 1
+    i := i + 1
+{
+    D
+}
+--
+
+{
+    D and i < len(self._objectives) and criteria[ci + i] = false and Criteria.weights[i] <= 0 
+}
+    score := score + Criteria.weights[i];
+    self._objectives[i] := self._objectives[i] + 2
+    i := i + 1
+{
+    D
+}
+--
+
+{
+    D and i < len(self._objectives) and criteria[ci + i] = true 
+}
+    score := score + 1
+    i := i + 1
+{
+    D
+}
+
+-------------------------------------------
+D = 
+(
+    score = sum(
+        1 if criteria[ci + j] = True else Criteria.weights[j]
+        for j in range(len(self._objectives))
+    )
+    and
+    0 <= i <= len(self._objectives)
+    and
+    self._objectives[j] = sum(
+       1 if criteria[ci + j] = False and Criteria.weights[j] > 0 else
+       2 if criteria[ci + j] = False and Criteria.weights[j] <= 0
+       for j in range(len(self._objectives))
+    )
+)
+meaning D stores the state of the score, which increases for all violations of criteria, and self._objectives also stores violations but per criteria
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Now, we need to find A and C, such that these Hoare Triples are valid:
+
+(
+    score = sum(
+        1 if criteria[ci + j] = True else Criteria.weights[j]
+        for j in range(len(self._objectives))
+    )
+    and
+    0 <= i <= len(self._objectives)
+    and
+    self._objectives[j] = sum(
+       1 if criteria[ci + j] = False and Criteria.weights[j] > 0 else
+       2 if criteria[ci + j] = False and Criteria.weights[j] <= 0 else 0
+       for j in range(len(self._objectives))
+    )
+    and 
+    i >= len(self._objectives)
+)
+-> C
+[1]
+-------
+
+{C}
+    ci := ci + len(Criteria.weights)
+    m = m + 1
+{A and m >= len(items)}
+[2]
+-------
+
+A -> 
+(
+    configuration = Configuration()
+    and
+    self = Schedule(configuration)
+    and
+    self._objectives = np.zeros(len(Criteria.weights))
+    and
+    score = 0
+    and
+    criteria, configuration = self._criteria, self._configuration
+    and
+    items, slots = self._classes.items(), self._slots
+    and
+    numberOfRooms = configuration.numberOfRooms
+    and
+    DAY_HOURS, DAYS_NUM = Constant.DAY_HOURS, Constant.DAYS_NUM
+    and
+    daySize = DAY_HOURS * numberOfRooms
+    and
+    ci = 0
+    and
+    getRoomById = configuration.getRoomById
+    and
+    m = 0
+)
+[3]
+--------
+
+(
+    score = len(criteria) and for all cc, reservation_index in self._classes.items(), r= Criteria.isSeatEnough(r, cc)
+    and Criteria.isComputerEnough(r, cc)
+    and not Criteria.isRoomOverlapped(slots, reservation, dur)
+    and not Criteria.isOverlappedProfStudentGrp(slots, cc, numberOfRooms, timeId)[0]
+    and not Criteria.isOverlappedProfStudentGrp(slots, cc, numberOfRooms, timeId)[1]
+)
+or (score < len(criteria)) ->
+A and m >= len(items)
+[4]
+-------
+
+(
+    A and m < len(items)
+    and
+    cc = items[m][0]
+    and
+    reservation_index = items[m][1]
+    and
+    reservation = Reservation.parse(reservation_index)
+    and
+    day, time, room = reservation.Day, reservation.Time, reservation.Room
+    and
+    dur = cc.Duration
+    and
+    ro = Criteria.isRoomOverlapped(slots, reservation, dur)
+    and
+    criteria[ci + 0] = !ro
+    and
+    r = getRoomById(room)
+    and
+    criteria[ci + 1] = Criteria.isSeatEnough(r, cc)
+    and
+    criteria[ci + 2] = Criteria.isComputerEnough(r, cc)
+    and
+    timeId = day * daySize + time
+    and
+    po = Criteria.isOverlappedProfStudentGrp(slots, cc, numberOfRooms, timeId)[0]
+    and
+    go = Criteria.isOverlappedProfStudentGrp(slots, cc, numberOfRooms, timeId)[1]
+    and
+    criteria[ci + 3] = ! po
+    and
+    criteria[ci + 4] = ! go
+    and
+    i = 0
+) -> 
+(
+    score = sum(
+        1 if criteria[ci + j] = True else Criteria.weights[j]
+        for j in range(len(self._objectives))
+    )
+    and
+    0 <= i <= len(self._objectives)
+    and
+    self._objectives[j] = sum(
+       1 if criteria[ci + j] = False and Criteria.weights[j] > 0 else
+       2 if criteria[ci + j] = False and Criteria.weights[j] <= 0 else 0
+       for j in range(len(self._objectives))
+    )
+)
+[5]
+-----------------------------------------------
+
+A = 
+(
+    configuration = Configuration()
+    and
+    self = Schedule(configuration)
+    and
+    criteria, configuration = self._criteria, self._configuration
+    and
+    items, slots = self._classes.items(), self._slots
+    and
+    numberOfRooms = configuration.numberOfRooms
+    and
+    DAY_HOURS, DAYS_NUM = Constant.DAY_HOURS, Constant.DAYS_NUM
+    and
+    daySize = DAY_HOURS * numberOfRooms
+    and
+    ci = 0
+    and
+    getRoomById = configuration.getRoomById
+    and
+    m = 0
+    and
+    score = sum(
+        1 if criteria[ci + j] = True else Criteria.weights[j]
+        for j in range(len(self._objectives))
+    ) if len(self._objectives) > 0 else 0
+    and
+    self._objectives[j] = sum(
+       1 if criteria[ci + j] = False and Criteria.weights[j] > 0 else
+       2 if criteria[ci + j] = False and Criteria.weights[j] <= 0 else 0
+       for j in range(len(self._objectives)) if len(self._objectives) > 0 else np.zeros(len(Criteria.weights))
+    )
+)
+
+We have Criteria.weights = [0, 0.5, 0.5, 0, 0] from Criteria.py.
+self._objectives = [] from Schedule.py __init__
+
+Outright, it satisfies [3], since self._objectives = []  -> len(self._objectives) = 0 -> self._objectives = np.zeros(len(Criteria.weights)) and score = 0
+
+[5] is then could be opened as:
+(
+    configuration = Configuration()
+    and
+    self = Schedule(configuration)
+    and
+    score = sum(
+        1 if criteria[ci + j] = True else Criteria.weights[j]
+        for j in range(len(self._objectives))
+    ) if len(self._objectives) > 0 else 0
+    and
+    self._objectives[j] = sum(
+       1 if criteria[ci + j] = False and Criteria.weights[j] > 0 else
+       2 if criteria[ci + j] = False and Criteria.weights[j] <= 0 else 0
+       for j in range(len(self._objectives)) if len(self._objectives) > 0 else np.zeros(len(Criteria.weights))
+    )
+    and
+    criteria, configuration = self._criteria, self._configuration
+    and
+    items, slots = self._classes.items(), self._slots
+    and
+    numberOfRooms = configuration.numberOfRooms
+    and
+    DAY_HOURS, DAYS_NUM = Constant.DAY_HOURS, Constant.DAYS_NUM
+    and
+    daySize = DAY_HOURS * numberOfRooms
+    and
+    ci = 0
+    and
+    getRoomById = configuration.getRoomById
+    and
+    m = 0
+    and
+    and m < len(items)
+    and
+    cc = items[m][0]
+    and
+    reservation_index = items[m][1]
+    and
+    reservation = Reservation.parse(reservation_index)
+    and
+    day, time, room = reservation.Day, reservation.Time, reservation.Room
+    and
+    dur = cc.Duration
+    and
+    ro = Criteria.isRoomOverlapped(slots, reservation, dur)
+    and
+    criteria[ci + 0] = !ro
+    and
+    r = getRoomById(room)
+    and
+    criteria[ci + 1] = Criteria.isSeatEnough(r, cc)
+    and
+    criteria[ci + 2] = Criteria.isComputerEnough(r, cc)
+    and
+    timeId = day * daySize + time
+    and
+    po = Criteria.isOverlappedProfStudentGrp(slots, cc, numberOfRooms, timeId)[0]
+    and
+    go = Criteria.isOverlappedProfStudentGrp(slots, cc, numberOfRooms, timeId)[1]
+    and
+    criteria[ci + 3] = ! po
+    and
+    criteria[ci + 4] = ! go
+    and
+    i = 0
+) -> 
+(
+    score = sum(
+        1 if criteria[ci + j] = True else Criteria.weights[j]
+        for j in range(len(self._objectives))
+    )
+    and
+    0 <= i <= len(self._objectives)
+    and
+    self._objectives[j] = sum(
+       1 if criteria[ci + j] = False and Criteria.weights[j] > 0 else
+       2 if criteria[ci + j] = False and Criteria.weights[j] <= 0 else 0
+       for j in range(len(self._objectives))
+    )
+)
+
+we could also notice that this triples valid, as len(self._objectives) = 
+-----------------------------------------------
+
+C:
+(
+    score = sum(
+        1 if criteria[ci + j] = True else Criteria.weights[j]
+        for j in range(len(self._objectives))
+    )
+    and
+    0 <= i <= len(self._objectives)
+    and
+    self._objectives[j] = sum(
+       1 if criteria[ci + j] = False and Criteria.weights[j] > 0 else
+       2 if criteria[ci + j] = False and Criteria.weights[j] <= 0 else 0
+       for j in range(len(self._objectives))
+    )
+    and
+    i >= len(self._objectives)
+)
