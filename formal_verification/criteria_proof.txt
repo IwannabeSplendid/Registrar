@@ -1,0 +1,68 @@
+Now, we will prove why Criteria.isRoomOverlapped, Criteria.isSeatEnough, Criteria.isComputerEnough, Criteria.isOverlappedProfStudentGrp.
+Unfortunately, we will prove it just using semantic logic.
+
+
+-----------------------
+def isRoomOverlapped(slots, reservation, dur):
+    reservation_index = hash(reservation)
+    cls = slots[reservation_index: reservation_index + dur]
+    return any(True for slot in cls if len(slot) > 1)
+
+It checks if room is double-booked for specific reservation, which is a tuple of (day, time, room).
+Reservation is "uniqiely" hashed into int as day * numberOfRooms * Constant.DAY_HOURS + room * Constant.DAY_HOURS + time.
+Slots is a list of lists where list[x].append(reservation) if x = hashed(reservation). It contains all reseravtion for all courses.
+Therefore, cls is a "period of time" when this specific reservation booked the room. So, for no overlap we want to a=only have this one reservation.
+If any(True for slot in cls if len(slot) > 1) then room double booked.
+
+-----------------------
+def isSeatEnough(r, cc):
+    return r.NumberOfSeats >= cc.NumberOfSeats
+
+It verifies whether the assigned room has enough seats for the class.
+Compares the room's seating capacity (r.NumberOfSeats) with the number of students required (cc.NumberOfSeats).
+Returns True if the room has sufficient seats, otherwise False.
+
+-----------------------
+def isComputerEnough(r, cc):
+    return (not cc.LabRequired) or (cc.LabRequired and r.Lab)
+
+It checks if the room meets the computer/lab requirements of the class.
+If the class doesn’t require a lab (not cc.LabRequired), it automatically returns True.
+If a lab is required (cc.LabRequired), checks whether the room is equipped with lab facilities (r.Lab).
+
+-----------------------
+def isOverlappedProfStudentGrp(slots, cc, numberOfRooms, timeId):
+    po = go = False
+
+    dur = cc.Duration
+    for i in range(numberOfRooms, 0, -1):
+        # for each hour of class
+        for j in range(timeId, timeId + dur):
+            cl = slots[j]
+            for cc1 in cl:
+                if cc != cc1:
+                    # professor overlaps?
+                    if not po and cc.professorOverlaps(cc1):
+                        po = True
+                    # student group overlaps?
+                    if not go and cc.groupsOverlap(cc1):
+                        go = True
+                    # both type of overlapping? no need to check more
+                    if po and go:
+                        return po, go
+
+        timeId += Constant.DAY_HOURS
+    return po, go
+
+def CourseClass.groupsOverlap(self, c):
+    return len(self.Groups & c.Groups) > 0
+
+def CourseClass.professorOverlaps(self, c):
+    return self.Professor == c.Professor
+
+It verifies whether the professor or student groups for the class have overlapping schedules.
+Slots is a list of lists where list[x].append(reservation) if x = hashed(reservation). It contains all reseravtion for all courses.
+cc is a specific CourseClass.
+timeId is reservation.day * Constant.DAY_HOURS * numberOfRooms + reservation.time, which is used to access a slot number where this cc could potentially be and iterates over all rooms
+so basicaly it checks over all reservation during the same day, time and checks wether it overlaps with student group or professor.
+It checks over all to ensure that if it overlaps po or/and go will be False.
